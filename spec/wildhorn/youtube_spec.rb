@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Wildhorn::YouTube do
-  let(:subject) { Wildhorn::YouTube }
-
   describe '.make_public!(id)' do
     it 'makes a video public' do
       youtube_id = double

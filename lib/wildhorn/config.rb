@@ -1,3 +1,6 @@
+require 'yt'
+require 'soundcloud'
+
 module Wildhorn
   # Manages project-level configuration details
   module Config
@@ -16,6 +19,10 @@ module Wildhorn
         owner_name: credentials[:youtube][:username],
         refresh_token: credentials[:youtube][:refresh_token]
       )
+    end
+
+    def soundcloud
+      ::SoundCloud.new(credentials[:soundcloud])
     end
   end
 end

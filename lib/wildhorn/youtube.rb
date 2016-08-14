@@ -1,7 +1,7 @@
 require 'yt'
 
 module Wildhorn
-  # Handle interaction with podcasts videos hosted on YouTube
+  # Handle interaction with podcast videos hosted on YouTube
   module YouTube
     module_function
 
