@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/gisikw/wildhorn.svg?branch=master)](https://travis-ci.org/gisikw/wildhorn)
 [![Test Coverage](https://codeclimate.com/github/gisikw/wildhorn/badges/coverage.svg)](https://codeclimate.com/github/gisikw/wildhorn/coverage)
 [![Code Climate](https://codeclimate.com/github/gisikw/wildhorn/badges/gpa.svg)](https://codeclimate.com/github/gisikw/wildhorn)
+[![Dependency Status](https://gemnasium.com/badges/github.com/gisikw/wildhorn.svg)](https://gemnasium.com/github.com/gisikw/wildhorn)
 
 # Wildhorn
 
