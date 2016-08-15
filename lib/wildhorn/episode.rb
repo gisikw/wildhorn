@@ -14,6 +14,12 @@ module Wildhorn
     END
 
     class << self
+      def all
+        Dir.glob('_posts/*.md')
+           .select { |post| YAML.load_file(post)['podcast'] }
+           .map { |post| new(post) }
+      end
+
       def find_or_create_from_media(mp3_name)
         new(
           Dir.glob("_posts/*#{to_slug(mp3_name)}.md")[0] ||
