@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+#
 require 'yt'
 require 'soundcloud'
 
@@ -7,23 +8,27 @@ module Wildhorn
   module Config
     module_function
 
-    def credentials
-      @credentials ||= {}
+    def opts
+      @opts ||= {}
+    end
+
+    def artwork_path
+      @opts[:artwork_path]
     end
 
     def yt_user
       Yt.configure do |config|
-        config.client_id = credentials[:youtube][:client_id]
-        config.client_secret = credentials[:youtube][:client_secret]
+        config.client_id = opts[:youtube][:client_id]
+        config.client_secret = opts[:youtube][:client_secret]
       end
       Yt::ContentOwner.new(
-        owner_name: credentials[:youtube][:username],
-        refresh_token: credentials[:youtube][:refresh_token]
+        owner_name: opts[:youtube][:username],
+        refresh_token: opts[:youtube][:refresh_token]
       )
     end
 
     def soundcloud
-      ::SoundCloud.new(credentials[:soundcloud])
+      ::SoundCloud.new(opts[:soundcloud])
     end
   end
 end

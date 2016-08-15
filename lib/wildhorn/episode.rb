@@ -12,6 +12,30 @@ module Wildhorn
       File.write(@path, "#{@metadata.to_yaml}---\n\n#{@body}\n")
     end
 
+    def album
+      'Code Monkey Podcast'
+    end
+
+    def artist
+      'Kevin Gisi and Alex Bragdon'
+    end
+
+    def artwork
+      File.read(Config.artwork_path, mode: 'rb')
+    end
+
+    def genre
+      'Technology'
+    end
+
+    def mp3_path
+      "_episodes/#{media}"
+    end
+
+    def mp3
+      File.read(mp3_path, mode: 'rb')
+    end
+
     private
 
     def method_missing(method_sym, *args, &block)

@@ -3,20 +3,26 @@ require 'spec_helper'
 
 describe Wildhorn::Config do
   let(:subject) { Wildhorn::Config }
-
+  let(:artwork_path) { subject }
   let(:youtube_creds) do
     { username: double, refresh_token: double,
       client_id: double, client_secret: double }
   end
-
   let(:soundcloud_creds) do
     { client_id: double, client_secret: double,
       username: double, password: double }
   end
 
-  before :each do
-    subject.credentials.merge!(youtube: youtube_creds,
-                               soundcloud: soundcloud_creds)
+  before do
+    subject.opts.merge!(youtube: youtube_creds,
+                        soundcloud: soundcloud_creds,
+                        artwork_path: artwork_path)
+  end
+
+  describe '.artwork_path' do
+    it 'returns the artwork_path set' do
+      expect(subject.artwork_path).to eql(artwork_path)
+    end
   end
 
   describe '.yt_user' do
