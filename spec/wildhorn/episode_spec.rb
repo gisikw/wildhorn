@@ -2,6 +2,14 @@
 require 'spec_helper'
 
 describe Wildhorn::Episode do
+  let(:mp3_name) { 'TestMP3Episode.mp3' }
+  let(:post_path) { '_posts/2012-12-12-test-mp3-episode.md' }
+  let(:post_content) do
+    Wildhorn::Episode::TEMPLATE.gsub('_TITLE_', 'Test MP3 Episode')
+                               .gsub('_MP3_', mp3_name)
+                               .gsub('_DATE_', '2012-12-12')
+  end
+
   describe '.all' do
     it 'returns an episode for each post marked as a podcast' do
       allow(Dir).to receive(:glob)
@@ -15,12 +23,6 @@ describe Wildhorn::Episode do
   end
 
   describe '.find_or_create_from_media' do
-    let(:mp3_name) { 'TestMP3Episode.mp3' }
-    let(:post_path) { '_posts/2012-12-12-test-mp3-episode.md' }
-    let(:post_content) do
-      Wildhorn::Episode::TEMPLATE.gsub('TITLE', 'Test MP3 Episode')
-    end
-
     before do
       allow(File).to receive(:read).with(post_path) { post_content }
       allow(Time).to receive(:new) { double('Time', strftime: '2012-12-12') }
@@ -43,4 +45,33 @@ describe Wildhorn::Episode do
       described_class.find_or_create_from_media(mp3_name)
     end
   end
+
+  describe '#save' do
+    it 'saves the front matter and body to the post' do
+      allow_any_instance_of(described_class).to receive(:parse)
+      subject = described_class.new(post_path)
+      subject.instance_variable_set(:@metadata, 'meta_field' => 'meta_val')
+      subject.instance_variable_set(:@body, 'TODO')
+      subject.instance_variable_set(:@path, post_path)
+      expect(File).to receive(:write).with(
+        post_path,
+        <<~END
+          ---
+          meta_field: meta_val
+          ---
+
+          TODO
+        END
+      )
+      subject.save
+    end
+  end
+
+  describe '#genre'
+  describe '#mp3'
+  describe '#artwork'
+  describe '#mp3_path'
+  describe '#artist'
+  describe '#album'
+  describe '#year'
 end

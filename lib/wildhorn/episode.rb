@@ -7,7 +7,12 @@ module Wildhorn
     TEMPLATE = <<~END
       ---
       podcast: true
-      title: TITLE
+      title: _TITLE_
+      genre:
+      soundcloud_track:
+      description:
+      media: _MP3_
+      date: _DATE_
       ---
 
       TODO
@@ -31,7 +36,12 @@ module Wildhorn
 
       def create_post(mp3_name)
         path = "_posts/#{Time.new.strftime('%F')}-#{to_slug(mp3_name)}.md"
-        File.write(path, TEMPLATE.gsub('TITLE', to_title(mp3_name)))
+        File.write(
+          path,
+          TEMPLATE.gsub('_TITLE_', to_title(mp3_name))
+                  .gsub('_MP3_', mp3_name)
+                  .gsub('_DATE_', Time.new.strftime('%F'))
+        )
         path
       end
 
@@ -45,7 +55,11 @@ module Wildhorn
     end
 
     def initialize(post)
-      @metadata = parse(post)
+      parse(post)
+    end
+
+    def save
+      File.write(@path, "#{@metadata.to_yaml}---\n\n#{@body}\n")
     end
 
     private
@@ -60,7 +74,9 @@ module Wildhorn
 
     def parse(post)
       text = File.read(post)
-      YAML.load(text).merge('body' => text.split('---')[2].lstrip)
+      @metadata = YAML.load(text)
+      @body = text.split('---')[2].lstrip
+      @path = post
     end
   end
 end
