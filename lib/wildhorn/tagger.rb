@@ -18,15 +18,6 @@ module Wildhorn
 
     module_function
 
-    def apply_artwork(tag, episode)
-      art = TagLib::ID3v2::AttachedPictureFrame.new
-      art.mime_type = 'image/jpeg'
-      art.description = 'Media'
-      art.type = TagLib::ID3v2::AttachedPictureFrame::Media
-      art.picture = episode.artwork
-      tag.add_frame(art)
-    end
-
     def apply_standard_tags(tag, episode)
       tag.title = episode.title
       tag.artist = episode.artist
@@ -34,6 +25,15 @@ module Wildhorn
       tag.genre = 'Podcast'
       tag.comment = episode.description
       tag.year = episode.year
+    end
+
+    def apply_artwork(tag, episode)
+      art = TagLib::ID3v2::AttachedPictureFrame.new
+      art.mime_type = 'image/jpeg'
+      art.description = 'Media'
+      art.type = TagLib::ID3v2::AttachedPictureFrame::Media
+      art.picture = episode.artwork
+      tag.add_frame(art)
     end
   end
 end
