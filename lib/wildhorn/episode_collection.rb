@@ -23,6 +23,10 @@ module Wildhorn
          .map { |post| new(post) }
     end
 
+    def unuploaded
+      all.reject { |episode| episode.soundcloud_id }
+    end
+
     def find_or_create_from_media(mp3_name)
       new(
         Dir.glob("_posts/*#{to_slug(mp3_name)}.md")[0] ||
