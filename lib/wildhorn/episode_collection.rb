@@ -8,6 +8,7 @@ module Wildhorn
       title: _TITLE_
       media: _MP3_
       date: _DATE_
+      layout: post
       soundcloud_track:
       youtube_id:
       description:
