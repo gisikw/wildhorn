@@ -7,7 +7,8 @@ describe Wildhorn::Episode do
   let(:subject) do
     allow_any_instance_of(described_class).to receive(:parse)
     described_class.new(post_path).tap do |episode|
-      episode.instance_variable_set(:@metadata, 'media' => mp3_name)
+      episode.instance_variable_set(:@metadata,
+                                    'media' => mp3_name, 'date' => '2012-12-12')
       episode.instance_variable_set(:@body, 'TODO')
       episode.instance_variable_set(:@path, post_path)
     end
@@ -76,6 +77,9 @@ describe Wildhorn::Episode do
     end
   end
 
-  describe '#artwork'
-  describe '#year'
+  describe '#year' do
+    it 'returns the year component of the date metadata' do
+      expect(subject.year).to eql('2012')
+    end
+  end
 end
