@@ -1,6 +1,4 @@
 # frozen_string_literal: true
-require 'yt'
-
 module Wildhorn
   # Handle interaction with podcast videos hosted on YouTube
   module YouTube

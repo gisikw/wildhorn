@@ -38,7 +38,6 @@ describe Wildhorn::Config do
             owner_name: youtube_creds[:username],
             refresh_token: youtube_creds[:refresh_token]
           ) { fake_user }
-
       expect(subject.yt_user).to eql(fake_user)
     end
   end
@@ -46,11 +45,9 @@ describe Wildhorn::Config do
   describe '.soundcloud' do
     it 'returns a credentialed SoundCloud client' do
       soundcloud_client = double
-
       expect(SoundCloud)
         .to receive(:new)
           .with(hash_including(soundcloud_creds)) { soundcloud_client }
-
       expect(subject.soundcloud).to eql(soundcloud_client)
     end
   end
