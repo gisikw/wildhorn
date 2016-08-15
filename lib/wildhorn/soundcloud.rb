@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Wildhorn
   # Handle interaction with podcast audio hosted on SoundCloud
   module SoundCloud
