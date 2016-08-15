@@ -23,9 +23,9 @@ describe Wildhorn::EpisodeCollection do
   end
 
   describe '.unuploaded' do
-    it 'returns an episode for each post without a soundcloud_id' do
-      old_episode = double('Episode', soundcloud_id: '123')
-      new_episode = double('Episode', soundcloud_id: nil)
+    it 'returns an episode for each post without a soundcloud_track' do
+      old_episode = double('Episode', soundcloud_track: '123')
+      new_episode = double('Episode', soundcloud_track: nil)
       allow(subject).to receive(:all) { [old_episode, new_episode] }
       expect(subject.unuploaded).to eql([new_episode])
     end

@@ -36,6 +36,15 @@ module Wildhorn
       File.read(mp3_path, mode: 'rb')
     end
 
+    def publish
+      Wildhorn::SoundCloud.publish!(self)
+    end
+
+    def upload
+      @metadata['soundcloud_track'] = Wildhorn::SoundCloud.upload!(self)
+      save
+    end
+
     def year
       Time.new(*date.split('-')).year.to_s
     end

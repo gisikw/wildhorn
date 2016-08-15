@@ -77,6 +77,22 @@ describe Wildhorn::Episode do
     end
   end
 
+  describe '#publish' do
+    it 'calls SoundCloud.publish!' do
+      expect(Wildhorn::SoundCloud).to receive(:publish!)
+      subject.publish
+    end
+  end
+
+  describe '#upload' do
+    it 'uploads to SoundCloud and saves the track id' do
+      allow(Wildhorn::SoundCloud).to receive(:upload!) { '123' }
+      expect(subject).to receive(:save)
+      subject.upload
+      expect(subject.soundcloud_track).to eql('123')
+    end
+  end
+
   describe '#year' do
     it 'returns the year component of the date metadata' do
       expect(subject.year).to eql('2012')

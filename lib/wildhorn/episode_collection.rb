@@ -12,6 +12,7 @@ module Wildhorn
       soundcloud_track:
       youtube_id:
       description:
+      public: false
       ---
 
       TODO
@@ -24,7 +25,7 @@ module Wildhorn
     end
 
     def unuploaded
-      all.reject { |episode| episode.soundcloud_id }
+      all.reject(&:soundcloud_track)
     end
 
     def find_or_create_from_media(mp3_name)
