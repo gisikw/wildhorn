@@ -36,8 +36,11 @@ module Wildhorn
       File.read(mp3_path, mode: 'rb')
     end
 
-    def publish
+    def publish!
       Wildhorn::SoundCloud.publish!(self)
+      Wildhorn::YouTube.publish!(self)
+      @metadata['draft'] = false
+      save
     end
 
     def upload

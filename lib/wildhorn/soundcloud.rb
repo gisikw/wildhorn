@@ -11,16 +11,11 @@ module Wildhorn
 
     def track_details(episode)
       { track: {
-        title: episode.title,
-        description: episode.description,
-        genre: episode.genre,
-        track_type: 'podcast',
-        asset_data: episode.mp3,
-        artwork_data: episode.artwork,
-        sharing: 'private',
-        release_year: episode.year,
-        release_month: episode.month,
-        release_day: episode.day
+        title: episode.title, description: episode.description,
+        genre: episode.genre, track_type: 'podcast',
+        asset_data: episode.mp3, artwork_data: episode.artwork,
+        sharing: 'private', release_year: episode.year,
+        release_month: episode.month, release_day: episode.day
       } }
     end
 

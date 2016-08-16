@@ -13,6 +13,7 @@ module Wildhorn
       youtube_id:
       description:
       public: false
+      draft: true
       ---
 
       TODO

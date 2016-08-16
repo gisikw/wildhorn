@@ -77,10 +77,12 @@ describe Wildhorn::Episode do
     end
   end
 
-  describe '#publish' do
-    it 'calls SoundCloud.publish!' do
+  describe '#publish!' do
+    it 'calls SoundCloud.publish!, YouTube.publish!, and saves' do
       expect(Wildhorn::SoundCloud).to receive(:publish!)
-      subject.publish
+      expect(Wildhorn::YouTube).to receive(:publish!)
+      expect(subject).to receive(:save)
+      subject.publish!
     end
   end
 
