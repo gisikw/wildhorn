@@ -98,4 +98,16 @@ describe Wildhorn::Episode do
       expect(subject.year).to eql('2012')
     end
   end
+
+  describe '#month' do
+    it 'returns the month component of the date metadata' do
+      expect(subject.month).to eql('12')
+    end
+  end
+
+  describe '#day' do
+    it 'returns the day component of the date metadata' do
+      expect(subject.day).to eql('12')
+    end
+  end
 end

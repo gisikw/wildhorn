@@ -49,6 +49,14 @@ module Wildhorn
       Time.new(*date.split('-')).year.to_s
     end
 
+    def month
+      Time.new(*date.split('-')).month.to_s
+    end
+
+    def day
+      Time.new(*date.split('-')).day.to_s
+    end
+
     private
 
     def method_missing(method_sym, *args, &block)
